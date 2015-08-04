@@ -1,0 +1,111 @@
+#SDK MAKEFILE 1.0
+###########################################################################
+DIR:=.
+SOURCES:=$(wildcard *.cpp)
+
+DELETE:=$(patsubst %.cpp,%.o,$(SOURCES))
+DELETE+=$(patsubst %.cpp,%.d,$(SOURCES))
+##########################################################################
+define debug
+endef
+define test
+endef
+define release
+endef
+
+define Cost
+endef
+define Basic
+endef
+define Professional
+endef
+define Ultimate
+endef
+
+define packid_1
+endef
+define packid_2
+endef
+define packid_3
+endef
+define packid_4
+endef
+define packid_5
+endef
+define packid_6
+endef
+
+define td_tvt_in
+endef
+define td_tvt_cn
+endef
+define td_tvt_sp
+endef
+define td_tvt_us02
+endef
+define td_tvt_ru04
+endef
+define td_tvt_br27
+endef
+define td_tvt_tw01
+endef
+define td_tvt_gb14
+endef
+define td_tvt_in23
+endef
+define td_tvt_us47
+endef
+
+export VERSION = debug
+export LEVEL = Ultimate
+export PACKID = packid_1
+export CUSTOMID = td_tvt_in
+############################################################################
+-include $(DIR)/Comdef
+EXEFILE:=../product/$(PROJECT)
+###########################################################################
+ALL:LIBALL $(EXEFILE)
+
+LIBALL:
+	if [ -d ./source/TSNetDevice ]; then make -C ./source/TSNetDevice; fi
+	if [ -d ./source/common ]; then make -C ./source/common; fi
+	if [ -d ./source/activex ]; then make -C ./source/activex; fi
+	if [ -d ./source/fileserver ]; then make -C ./source/fileserver; fi
+	if [ -d ./source/ptz ]; then make -C ./source/ptz; fi
+	if [ -d ./source/alarm ]; then make -C ./source/alarm; fi
+	if [ -d ./source/mainctrl ]; then make -C ./source/mainctrl; fi
+	if [ -d ./source/netdevice ]; then make -C ./source/netdevice; fi
+	if [ -d ./source/netserver ]; then make -C ./source/netserver; fi
+	if [ -d ./source/hxht ]; then make -C ./source/hxht; fi
+	if [ -d ./source/config ]; then make -C ./source/config; fi
+	if [ -d ./source/webserver ]; then make -C ./source/webserver; fi
+	if [ -d ./source/window ]; then make -C ./source/window; fi
+	if [ -d ./source/mainframe ]; then make -C ./source/mainframe; fi
+	if [ -d ./source/productcheck ]; then make -C ./source/productcheck; fi
+
+$(EXEFILE):xdvr.o $(LIBS)
+	$(CXX) -o $@ $(CXXFLAGS) $(LDFLAGS) -I,-static $^ -lrt -lpthread -L./lib -lssl -lcrypto -I,-Bdynamic -L./lib -ltd8181
+
+-include $(DIR)/build
+###########################################################################
+.PHONY:clean
+clean:
+	if [ -d ./source/TSNetDevice ]; then make clean -C ./source/TSNetDevice; fi
+	if [ -d ./source/common ]; then make clean -C ./source/common; fi
+	if [ -d ./source/activex ]; then make clean -C ./source/activex; fi
+	if [ -d ./source/fileserver ]; then make clean -C ./source/fileserver; fi
+	if [ -d ./source/ptz ]; then make clean -C ./source/ptz; fi
+	if [ -d ./source/alarm ]; then make clean -C ./source/alarm; fi
+	if [ -d ./source/mainctrl ]; then make clean -C ./source/mainctrl; fi
+	if [ -d ./source/netdevice ]; then make clean -C ./source/netdevice; fi
+	if [ -d ./source/netserver ]; then make clean -C ./source/netserver; fi
+	if [ -d ./source/hxht ]; then make clean -C ./source/hxht; fi
+	if [ -d ./source/config ]; then make clean -C ./source/config; fi
+	if [ -d ./source/webserver ]; then make clean -C ./source/webserver; fi
+	if [ -d ./source/window ]; then make clean -C ./source/window; fi	
+	if [ -d ./source/mainframe ]; then make clean -C ./source/mainframe; fi
+	if [ -d ./source/productcheck ]; then make clean -C ./source/productcheck; fi
+	
+	rm $(DELETE) -f
+	rm $(EXEFILE) -f
+###########################################################################

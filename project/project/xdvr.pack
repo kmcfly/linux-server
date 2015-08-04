@@ -1,0 +1,357 @@
+#!/bin/bash 
+
+#TVT XDVR 3.0 Pack Tool
+
+#  
+#show the title and a brief message before showing the main menu 
+#
+
+chmod 777 * -R
+tput clear
+tput cup 5 15
+echo "同为数码软件打包工具"
+tput cup 12 10
+echo "嵌入式硬盘录像机固件《XDVR 3.3.0》编译及打包程序"
+tput cup 14 10
+echo -e "按任意键继续 ..._\b\c"
+read answer
+write_line=0
+while true
+do
+
+error_flag=0
+	
+tput clear
+write_line=5
+
+tput cup $write_line 10; 	echo "方案选择 - 主要是区分不同的芯片方案"
+
+write_line=`expr $write_line + 2`;tput cup $write_line 20; echo "0: 退出"
+write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "1:  8181--------PackID:1---Product:"
+write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "2:  3520_cif----PackID:2---Product:NONE"
+write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "3:  3520_d1-----PackID:3---Product:NONE"
+write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "4:  3515--------PackID:4---Product:TD2304SE,2308SE,TD2304ME,TD2308ME,TD2304SS TD2308SS"
+write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "5:  3520_d1_V60-PackID:5---Product:NONE"
+write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "6:  3515_V40----PackID:6---Product:TD2316SE_S TD2316SS"
+write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "7:  3520_d1_V60-PackID:7---Product:TD25XXFD TD25XXHEHD TD2316ME,TD2404MD,TD2408MD,TD2416MD"
+write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "8:  3520_d1_V60-PackID:8---Product:TD2432MD, TD2424MD TD2324SE"
+write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "9:  3520_d1_V60-PackID:9---Product:TD2708HD TD2704XE_L TD2708XD_L TD2716XD_L"
+write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "10: FULLHAN-----PackID:10--Product:TD2316ME_A TD_2508HE_L"
+write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "11: NXP---------PackID:11--Product:TD2516FD_S"
+write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "12: 3531--------PackID:12--Product:TD2508HE_B(N100) TD2516HE_B(N100) TD2616LD TD2616LE"
+write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "13: 3520_960H---PackID:13--Product:TD26XXLD_S"
+write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "14: 3531_SDI----PackID:14--Product:TD2704XD_P TD_2716XD_P"
+write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "15: 3521_D1-----PackID:15--Product:TD2304SS_B TD2308SS_B TD2316SS_B"
+write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "16: 3520A-------PackID:16--Product:TD2304SS_B TD2308SS_B TD2316SS_B"
+write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "17: TIDM8107D1--PackID:17--Product:TD_2304SS_SL TD_2308SS_SL"
+write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "18: 3531D1960H--PackID:18--Product:3531D1 960H 09X"
+write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "19: 3531SDI-----PackID:19--Product:3531 SDI 09X"
+write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "20: 3531  NVR---PackID:20--Product:3531 NVR"
+write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "21: 3520A NVR---PackID:21--Product:3520A NVR"
+write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "22: 3520D-------PackID:22--Product:3520D"
+write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "23: 3531 NVR----PackID:23--Product:3531 09X"
+write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "24: 3521 NVR----PackID:24--Product:3521 NVR"
+write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "25: 3535 NVR----PackID:25--Product:3535 NVR"
+write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "26: 3531 0BX----PackID:26--Product:3531 0BX"
+write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "27: GM8210------PackID:27--Product:GM8210"
+write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "28: GM8283------PackID:28--Product:GM8283"
+write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "29: 3520D-------PackID:29--Product:3520D-V040"
+write_line=`expr $write_line + 2`;tput cup $write_line 10; echo -e "请选择要编译的执行包>_\b\c"
+read product
+
+#
+#case construct for checking the user selection
+#
+case $product in
+	0)tput clear;exit 0;;
+	1)export PRODUCT=1;error_flag=1;;
+	2)export PRODUCT=2;error_flag=1;;
+	3)export PRODUCT=3;error_flag=0;;
+	4)export PRODUCT=4;error_flag=1;;
+	5)export PRODUCT=5;error_flag=1;;
+	6)export PRODUCT=6;error_flag=1;;
+	7)export PRODUCT=7;error_flag=1;;
+	8)export PRODUCT=8;error_flag=1;;
+	9)export PRODUCT=9;error_flag=1;;
+	10)export PRODUCT=10;error_flag=1;;
+	11)export PRODUCT=11;error_flag=1;;
+	12)export PRODUCT=12;error_flag=1;;
+	13)export PRODUCT=13;error_flag=1;;
+	14)export PRODUCT=14;error_flag=1;;
+	15)export PRODUCT=15;error_flag=1;;
+	16)export PRODUCT=16;error_flag=1;;
+	17)export PRODUCT=17;error_flag=1;;
+	18)export PRODUCT=18;error_flag=1;;
+	19)export PRODUCT=19;error_flag=1;;
+	20)export PRODUCT=20;error_flag=1;;
+	21)export PRODUCT=21;error_flag=1;;
+	22)export PRODUCT=22;error_flag=1;;
+	23)export PRODUCT=23;error_flag=1;;
+	24)export PRODUCT=24;error_flag=1;;
+	25)export PRODUCT=25;error_flag=1;;
+	26)export PRODUCT=26;error_flag=1;;
+	27)export PRODUCT=27;error_flag=1;;
+	28)export PRODUCT=28;error_flag=1;;
+	29)export PRODUCT=29;error_flag=1;;
+	*)./error 60 10  62
+	tput cup 60 1 
+	tput ed
+esac
+
+if [ $error_flag -eq 1 ]
+then
+	error_flag=0
+	write_line=`expr $write_line + 1`;tput cup $write_line 10; echo "你选择了方案 - $product"
+	write_line=`expr $write_line + 2`;tput cup $write_line 10;	echo "界面选择 - 三种不同皮肤方案"
+	write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "0: 退出"
+	write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "1: UI_1--------黑色界面"
+	write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "2: UI_2--------绿色界面"
+	write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "3: UI_3--------蓝色界面"
+	write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "4: UI_4--------黑色界面(US47)"
+	write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "5: UI_5--------蓝色界面(ADI)"
+	write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "6: UI_6--------蓝色界面(IN23)"
+	write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "7: UI_7--------黑色界面(IL03)"
+	write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "8: UI_8--------红色界面(CBC)"
+	write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "9: UI_9--------军绿界面(RU04)"
+	write_line=`expr $write_line + 1`;tput cup $write_line 10; echo -e "请选择要打包的皮肤界面 >_\b\c"
+	read ui
+
+	case $ui in
+		0)tput clear;exit 0;;
+		1)export UI_ID=1;error_flag=1;;
+		2)export UI_ID=2;error_flag=1;;
+		3)export UI_ID=3;error_flag=1;;
+		4)export UI_ID=4;error_flag=1;;
+		5)export UI_ID=5;error_flag=1;;
+		6)export UI_ID=6;error_flag=1;;
+		7)export UI_ID=7;error_flag=1;;
+		8)export UI_ID=8;error_flag=1;;
+		9)export UI_ID=9;error_flag=1;;
+		*)./error 60 10 62
+		tput cup 60 1 
+		tput ed
+	esac
+	
+	if [ $error_flag -eq 1 ]
+	then
+		error_flag=0
+		write_line=`expr $write_line + 1`;tput cup $write_line 10; echo "你选择了皮肤 - $ui"
+		write_line=`expr $write_line + 2`;tput cup $write_line 10;	echo "客户及区域选择 - 分为国际和国内标准版，及一些重要客人的定制"
+		write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "0:  退出"
+		write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "1:  TD_TVT_IN----------国际标准版"
+		write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "2:  TD_TVT_CN----------国内标准版"
+		write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "3:  TD_TVT_SP----------特殊版本（未用）"
+		write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "4:  TD_TVT_US02--------US02"
+		write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "5:  TD_TVT_RU04--------RU04"
+		write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "6:  TD_TVT_BR27--------BR27"
+		write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "7:  TD_TVT_TW01--------TW01不带数字签名的版本"
+		write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "8:  TD_TVT_GB14--------GB14"
+		write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "9:  TD_TVT_IN23--------IN23"
+		write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "10: TD_TVT_US47--------US47(SPECO)"
+		write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "11: TD_TVT_IN25--------IN25(ADI)"
+		write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "12: TD_TVT_PL14--------PL14"
+		write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "13: TD_TVT_TW01_TS-----TW01带数字签名的版本"
+		write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "14: TD_TVT_IL03--------IL03"
+		write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "15: TD_TVT_LV01--------LV01"
+		write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "16: TD_TVT_SHANGHAI----SHANGHAI"
+		write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "17: TD_TVT_CBC---------CBC"
+		write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "18: TD_TVT_GB31--------GB31"
+		write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "20: TD_TVT_HXHT--------互信互通（国内标准版）"
+		write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "21: YUANZHENG----------远征"
+		write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "22: TD_TVT_US02_JP-----US02日语版本"
+		write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "23: TD_TVT_CN_UI5------国内版本(ADI)"
+		write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "24: TD_TVT_SST---------国内手视通版本"
+		write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "25: TD_TVT_RILI--------TW01日立版本"
+		write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "26: TD_TVT_GB----------中文国标版本"
+		write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "27: TD_TVT_ZNV---------中兴力维版本国际版本"
+		write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "28: TD_TVT_ZNVCN-------中兴力维版本国内版本"
+		write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "29: TD_TVT_ZNVCNSC-----中兴力维版本国内四川版本"
+		write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "30: TD_TVT_ZNVWNRL-----中兴力维版本委内瑞拉版本"
+		write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "31: TD_TVT_CNB---------CNB国际版本"
+		write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "32: TD_TVT_KOREAN------Korean国际版本"		
+		write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "33: TD_TVT_KR24_CN_JP--KR24中日 (compile,Comdef中为td_tvt_korean_cn)"
+		write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "34: TD_TVT_KR24_IN-----KR24国际版本"
+		write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "35: TD_TVT_AP_AU27-----爱普AU27版本"
+		write_line=`expr $write_line + 1`;tput cup $write_line 10; echo -e "请选择客户或区域 >_\b\c"
+		read custom_id
+
+		case $custom_id in
+			0)tput clear;exit 0;;
+			1)export CUSTOM_ID=1;error_flag=1;;
+			2)export CUSTOM_ID=2;error_flag=1;;
+			3)export CUSTOM_ID=3;error_flag=1;;
+			4)export CUSTOM_ID=4;error_flag=1;;
+			5)export CUSTOM_ID=5;error_flag=1;;
+			6)export CUSTOM_ID=6;error_flag=1;;
+			7)export CUSTOM_ID=7;error_flag=1;;
+			8)export CUSTOM_ID=8;error_flag=1;;
+			9)export CUSTOM_ID=9;error_flag=1;;
+			10)export CUSTOM_ID=10;error_flag=1;;
+			11)export CUSTOM_ID=11;error_flag=1;;
+			12)export CUSTOM_ID=12;error_flag=1;;
+			13)export CUSTOM_ID=13;error_flag=1;;
+			14)export CUSTOM_ID=14;error_flag=1;;
+			15)export CUSTOM_ID=15;error_flag=1;;
+			16)export CUSTOM_ID=16;error_flag=1;;
+			17)export CUSTOM_ID=17;error_flag=1;;
+			18)export CUSTOM_ID=18;error_flag=1;;		       
+			20)export CUSTOM_ID=20;error_flag=1;;
+			21)export CUSTOM_ID=21;error_flag=1;;			
+			22)export CUSTOM_ID=22;error_flag=1;;
+			23)export CUSTOM_ID=23;error_flag=1;;
+			24)export CUSTOM_ID=24;error_flag=1;;
+			25)export CUSTOM_ID=25;error_flag=1;;
+			26)export CUSTOM_ID=26;error_flag=1;;
+			27)export CUSTOM_ID=27;error_flag=1;;
+			28)export CUSTOM_ID=28;error_flag=1;;
+			29)export CUSTOM_ID=29;error_flag=1;;
+			30)export CUSTOM_ID=30;error_flag=1;;
+			31)export CUSTOM_ID=31;error_flag=1;;
+			32)export CUSTOM_ID=32;error_flag=1;;
+			33)export CUSTOM_ID=33;error_flag=1;;
+			34)export CUSTOM_ID=34;error_flag=1;;
+			35)export CUSTOM_ID=35;error_flag=1;;
+			*)./error 60 10 62
+			tput cup 60 1 
+			tput ed
+		esac
+		
+		if [ $error_flag -eq 1 ]
+		then
+			error_flag=0
+			write_line=`expr $write_line + 1`;tput cup $write_line 10; echo "你选择的客户为 $custom_id"
+			write_line=`expr $write_line + 2`;tput cup $write_line 10; echo "选择是否带3G功能"
+			write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "0: 退出"
+			write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "1: 不使用3G"
+			write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "2: 使用3G"
+			write_line=`expr $write_line + 1`;tput cup $write_line 10; echo -e "请选择是否要3G功能 >_\b\c"
+			read have3G
+		
+			case $have3G in
+				0)tput clear;exit 0;;
+				1)export HAVE_3G=0;error_flag=1;;
+				2)export HAVE_3G=1;error_flag=1;;
+				*)./error 60 10 62
+				tput cup 60 1 
+				tput ed
+			esac
+			
+			if [ $error_flag -eq 1 ]
+			then
+				error_flag=0
+				write_line=`expr $write_line + 1`;tput cup $write_line 10; echo "你选择的3G $have3G"
+				write_line=`expr $write_line + 2`;tput cup $write_line 10; echo "选择是否支持通道名称换行"
+				write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "0: 退出"
+				write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "1: 不支持"
+				write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "2: 支持"
+				write_line=`expr $write_line + 1`;tput cup $write_line 10; echo -e "请选择是否支持通道名称换行 >_\b\c"
+				read osdtwolines
+				
+				case $osdtwolines in
+					0)tput clear;exit 0;;
+					1)export OSD_TWOLINES=0;error_flag=1;;
+					2)export OSD_TWOLINES=1;error_flag=1;;
+					*)./error 60 10 62
+					tput cup 60 1 
+					tput ed
+				esac
+				
+			if [ $error_flag -eq 1 ]
+			then
+				error_flag=0
+				write_line=`expr $write_line + 1`;tput cup $write_line 10; echo "你选择的是否支持通道名称换行 $osdtwolines"
+				write_line=`expr $write_line + 2`;tput cup $write_line 10; echo "选择是否支持ONVIF"
+				write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "0: 退出"
+				write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "1: 不支持ONVIF"
+				write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "2: 支持ONVIF"
+				write_line=`expr $write_line + 1`;tput cup $write_line 10; echo -e "请选择是否支持ONVIF >_\b\c"
+				read support_onvif
+				
+				case $support_onvif in
+					0)tput clear;exit 0;;
+					1)export SUPPORT_ONVIF=0;error_flag=1;;
+					2)export SUPPORT_ONVIF=1;error_flag=1;;
+					*)./error 60 10 62
+					tput cup 60 1 
+					tput ed
+				esac
+				
+				if [ $error_flag -eq 1 ]
+				then
+					error_flag=0
+					write_line=`expr $write_line + 1`;tput cup $write_line 10; echo "你选择的是否支持ONVIF $support_onvif"
+					write_line=`expr $write_line + 2`;tput cup $write_line 10; echo "选择是否支持NAT"
+					write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "0: 退出"
+					write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "1: 不支持NAT"
+					write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "2: 支持NAT"
+					write_line=`expr $write_line + 1`;tput cup $write_line 10; echo -e "请选择是否支持NAT >_\b\c"
+					read support_nat
+				
+				case $support_nat in
+					0)tput clear;exit 0;;
+					1)export SUPPORT_NAT=0;error_flag=1;;
+					2)export SUPPORT_NAT=1;error_flag=1;;
+					*)./error 60 10 62
+					tput cup 60 1 
+					tput ed
+				esac
+				
+				if [ $error_flag -eq 1 ]
+				then
+					error_flag=0
+					write_line=`expr $write_line + 1`;tput cup $write_line 10; echo "你选择的是否支持NAT $support_nat"
+					write_line=`expr $write_line + 2`;tput cup $write_line 10; echo "选择是否支持推送"
+					write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "0: 退出"
+					write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "1: 不支持推送"
+					write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "2: 支持推送"
+					write_line=`expr $write_line + 1`;tput cup $write_line 10; echo -e "请选择是否支持推送 >_\b\c"
+					read support_push
+				
+				case $support_push in
+					0)tput clear;exit 0;;
+					1)export SUPPORT_PUSH=0;error_flag=1;;
+					2)export SUPPORT_PUSH=1;error_flag=1;;
+					*)./error 60 10 62
+					tput cup 60 1 
+					tput ed
+				esac
+
+				if [ $error_flag -eq 1 ]
+				then
+					error_flag=0
+					write_line=`expr $write_line + 2`;tput cup $write_line 10; echo "选择是否支持API"
+					write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "0: 退出"
+					write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "1: 不支持API"
+					write_line=`expr $write_line + 1`;tput cup $write_line 20; echo "2: 支持API"
+					write_line=`expr $write_line + 1`;tput cup $write_line 10; echo -e "请选择是否支持API >_\b\c"
+					read support_api
+				
+				case $support_api in
+					0)tput clear;exit 0;;
+					1)export SUPPORT_API=0;error_flag=1;;
+					2)export SUPPORT_API=1;error_flag=1;;
+					*)./error 60 10 62
+					tput cup 60 1 
+					tput ed
+				esac
+
+					echo "nat support" ${SUPPORT_NAT}
+					echo "push support" ${SUPPORT_PUSH}
+					echo "api support" ${SUPPORT_API}
+
+					if [ $error_flag -eq 1 ]
+					then
+						./compile ${PRODUCT} ${UI_ID} ${CUSTOM_ID} ${HAVE_3G} ${OSD_TWOLINES} ${SUPPORT_ONVIF} ${SUPPORT_NAT} ${SUPPORT_PUSH} ${SUPPORT_API}
+					exit 0
+					fi
+				fi
+			fi			
+		fi
+	fi
+fi		
+fi	
+fi	
+	
+fi
+done
+exit 0

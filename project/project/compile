@@ -1,0 +1,675 @@
+#!/bin/bash
+
+#
+#This program compile XDVR 3.0 firmware
+#
+
+if [ $1 -eq 1 ]
+then
+echo "Compile XDVR 3.0 firmware with 8181 ..."
+cp Comdef.8181 ./project/Comdef -f
+cp Makefile.8181 ./project/Makefile -f
+export PACK_ID=packid_1
+fi
+
+if [ $1 -eq 2 ]
+then
+echo "Compile XDVR 3.0 firmware with 3520 CIF..."
+cp Comdef.3520 ./project/Comdef -f
+cp Makefile.3520 ./project/Makefile -f
+cp TSNetDeviceDef.hi ./project/TSNetDeviceDef -f
+cp ./product/lib_3520/*.a ./project/lib/
+cp ./product/lib_3520/*.so ./project/lib/
+cp ./project/lib/libhi3520_cif.so ./project/lib/libhi3520.so
+export PACK_ID=packid_2
+fi
+
+if [ $1 -eq 3 ]
+then
+echo "Compile XDVR 3.0 firmware with 3520 D1..."
+cp Comdef.3520 ./project/Comdef -f
+cp Makefile.3520 ./project/Makefile -f
+cp TSNetDeviceDef.hi ./project/TSNetDeviceDef -f
+cp ./product/lib_3520/*.a ./project/lib/
+cp ./product/lib_3520/*.so ./project/lib/
+cp ./project/lib/libhi3520_d1.so ./project/lib/libhi3520.so
+export PACK_ID=packid_3
+fi
+
+if [ $1 -eq 4 ]
+then
+echo "Compile XDVR 3.0 firmware with 3515..."
+cp Comdef.3515 ./project/Comdef -f
+cp Makefile.3515 ./project/Makefile -f
+cp TSNetDeviceDef.hi ./project/TSNetDeviceDef -f
+cp ./product/lib_3520/*.a ./project/lib/
+cp ./product/lib_3520/*.so ./project/lib/
+cp ./project/lib/libhi3515v20.so ./project/lib/libhi3515.so
+export PACK_ID=packid_4
+fi
+
+if [ $1 -eq 5 ]
+then
+echo "Compile XDVR 3.0 firmware with 3520 HDHE..."
+cp Comdef.3520 ./project/Comdef -f
+cp Makefile.3520 ./project/Makefile -f
+cp TSNetDeviceDef.hi ./project/TSNetDeviceDef -f
+cp ./product/lib_3520/*.a ./project/lib/
+cp ./product/lib_3520/*.so ./project/lib/
+cp ./project/lib/libhi3520_d1v60_fd.so ./project/lib/libhi3520.so
+export PACK_ID=packid_5
+fi
+
+if [ $1 -eq 6 ]
+then
+echo "Compile XDVR 3.0 firmware with 3515..."
+cp Comdef.3515 ./project/Comdef -f
+cp Makefile.3515 ./project/Makefile -f
+cp TSNetDeviceDef.hi ./project/TSNetDeviceDef -f
+cp ./product/lib_3520/*.a ./project/lib/
+cp ./product/lib_3520/*.so ./project/lib/
+cp ./project/lib/libhi3515v40.so ./project/lib/libhi3515.so
+export PACK_ID=packid_6
+fi
+
+if [ $1 -eq 7 ]
+then
+echo "Compile XDVR 3.0 firmware with 3520 FD..."
+cp Comdef.3520 ./project/Comdef -f
+cp Makefile.3520 ./project/Makefile -f
+cp TSNetDeviceDef.hi ./project/TSNetDeviceDef -f
+cp ./product/lib_3520/*.a ./project/lib/
+cp ./product/lib_3520/*.so ./project/lib/
+cp ./project/lib/libhi3520_d1v60_fd.so ./project/lib/libhi3520.so
+export PACK_ID=packid_7
+fi
+
+if [ $1 -eq 8 ]
+then
+echo "Compile XDVR 3.0 firmware with 3520 2432MD..."
+cp Comdef.3520 ./project/Comdef -f
+cp Makefile.3520 ./project/Makefile -f
+cp TSNetDeviceDef.hi ./project/TSNetDeviceDef -f
+cp ./product/lib_3520/*.a ./project/lib/
+cp ./product/lib_3520/*.so ./project/lib/
+cp ./project/lib/libhi3520_d1v60_32.so ./project/lib/libhi3520.so
+export PACK_ID=packid_8
+fi
+
+if [ $1 -eq 9 ]
+then
+echo "Compile XDVR 3.0 firmware with 2704HD..."
+cp Comdef.3520 ./project/Comdef -f
+cp Makefile.3520 ./project/Makefile -f
+cp TSNetDeviceDef.hi ./project/TSNetDeviceDef -f
+cp ./product/lib_3520/*.a ./project/lib/
+cp ./product/lib_3520/*.so ./project/lib/
+cp ./project/lib/libhi3520_d1v61_hdmi.so ./project/lib/libhi3520.so
+export PACK_ID=packid_9
+fi
+
+if [ $1 -eq 10 ]
+then
+echo "Compile XDVR 3.0 firmware with FULLHAN..."
+cp Comdef.fh ./project/Comdef -f
+cp Makefile.fh ./project/Makefile -f
+cp TSNetDeviceDef.fh ./project/TSNetDeviceDef -f
+cp ./product/lib_fh/*.a ./project/lib/
+cp ./product/lib_fh/*.so ./project/lib/
+export PACK_ID=packid_10
+fi
+
+if [ $1 -eq 11 ]
+then
+echo "Compile XDVR 3.0 firmware with NXP..."
+cp Comdef.nxp ./project/Comdef -f
+cp Makefile.nxp ./project/Makefile -f
+cp TSNetDeviceDef.nxp ./project/TSNetDeviceDef -f
+cp ./product/lib_nxp/*.a ./project/lib/
+cp ./product/lib_nxp/*.so ./project/lib/
+export PACK_ID=packid_11
+fi
+
+if [ $1 -eq 12 ]
+then
+echo "Compile XDVR 3.0 firmware with 3531 FD..."
+cp Comdef.3531 ./project/Comdef -f
+cp Makefile.3531 ./project/Makefile -f
+cp TSNetDeviceDef.3531 ./project/TSNetDeviceDef -f
+cp ./product/lib_3531SDI/*.a ./project/lib/
+cp ./product/lib_3531SDI/*.so ./project/lib/
+rm ./project/lib/libhi3531.so
+cp ./project/lib/libhi3531_sdi.so ./project/lib/libhi3531.so
+export PACK_ID=packid_12
+fi
+
+if [ $1 -eq 13 ]
+then
+echo "Compile XDVR 3.0 firmware with 3520 26XXLD_S..."
+cp Comdef.3520 ./project/Comdef -f
+cp Makefile.3520 ./project/Makefile -f
+cp TSNetDeviceDef.hi ./project/TSNetDeviceDef -f
+cp ./product/lib_3520/*.a ./project/lib/
+cp ./project/lib_3520/*.so ./project/lib/
+cp ./project/lib/libhi3520_960H.so ./project/lib/libhi3520.so
+export PACK_ID=packid_13
+fi
+
+if [ $1 -eq 14 ]
+then
+echo "Compile XDVR 3.0 firmware with 3531 SDI..."
+cp Comdef.3531 ./project/Comdef -f
+cp Makefile.3531 ./project/Makefile -f
+cp TSNetDeviceDef.3531 ./project/TSNetDeviceDef -f
+cp ./product/lib_3531SDI/*.a ./project/lib/
+cp ./product/lib_3531SDI/*.so ./project/lib/
+rm ./project/lib/libhi3531.so
+cp ./project/lib/libhi3531_sdi.so ./project/lib/libhi3531.so
+export PACK_ID=packid_14
+fi
+
+if [ $1 -eq 15 ]
+then
+echo "Compile XDVR 3.0 firmware with 3521 D1..."
+cp Comdef.3521 ./project/Comdef -f
+cp Makefile.3521 ./project/Makefile -f
+cp TSNetDeviceDef.3521 ./project/TSNetDeviceDef -f
+cp ./product/lib_3521/*.a ./project/lib/
+cp ./product/lib_3521/*.so ./project/lib/
+export PACK_ID=packid_15
+fi
+
+if [ $1 -eq 16 ]
+then
+echo "Compile XDVR 3.0 firmware with 3520A ..."
+cp Comdef.3520A ./project/Comdef -f
+cp Makefile.3520A ./project/Makefile -f
+cp TSNetDeviceDef.3520A ./project/TSNetDeviceDef -f
+cp ./product/lib_3520A/*.a ./project/lib/
+cp ./product/lib_3520A/*.so ./project/lib/
+export PACK_ID=packid_16
+fi
+
+if [ $1 -eq 17 ]
+then
+echo "Compile XDVR 3.0 firmware with TI DM8107 ..."
+cp Comdef.tidm8107 ./project/Comdef -f
+cp Makefile.tidm8107 ./project/Makefile -f
+cp TSNetDeviceDef.tidm8107 ./project/TSNetDeviceDef -f
+cp ./product/lib_tidm8107/*.a ./project/lib/
+cp ./product/lib_tidm8107/*.so ./project/lib/
+export PACK_ID=packid_17
+fi
+
+if [ $1 -eq 18 ]
+then
+echo "Compile XDVR 3.0 firmware with 3531 SDI..."
+cp Comdef.3531 ./project/Comdef -f
+cp Makefile.3531 ./project/Makefile -f
+cp TSNetDeviceDef.3531 ./project/TSNetDeviceDef -f
+cp ./product/lib_3531_09X/*.a ./project/lib/
+cp ./product/lib_3531_09X/*.so ./project/lib/
+export PACK_ID=packid_12
+fi
+
+if [ $1 -eq 19 ]
+then
+echo "Compile XDVR 3.0 firmware with 3531 SDI..."
+cp Comdef.3531 ./project/Comdef -f
+cp Makefile.3531 ./project/Makefile -f
+cp TSNetDeviceDef.3531 ./project/TSNetDeviceDef -f
+cp ./product/lib_3531_09X/*.a ./project/lib/
+cp ./product/lib_3531_09X/*.so ./project/lib/
+export PACK_ID=packid_14
+fi
+
+if [ $1 -eq 20 ]
+then
+echo "Compile XDVR 3.0 firmware with 3531 28XXND..."
+cp Comdef.3531 ./project/Comdef -f
+cp Makefile.3531 ./project/Makefile -f
+cp ./product/lib_3531_N/*.a ./project/lib/
+cp ./product/lib_3531_N/*.so ./project/lib/
+export PACK_ID=packid_20
+fi
+
+if [ $1 -eq 21 ]
+then
+echo "Compile XDVR 3.0 firmware with 3520A 28XXNE..."
+cp Comdef.3520A ./project/Comdef -f
+cp Makefile.3520A ./project/Makefile -f
+cp ./product/lib_3520A_N/*.a ./project/lib/
+cp ./product/lib_3520A_N/*.so ./project/lib/
+export PACK_ID=packid_21
+fi
+
+if [ $1 -eq 22 ]
+then
+echo "Compile XDVR 3.0 firmware with 3520D ..."
+cp Comdef.3520D ./project/Comdef -f
+cp Makefile.3520D ./project/Makefile -f
+cp TSNetDeviceDef.3520D ./project/TSNetDeviceDef -f
+cp ./product/lib_3520D/*.a ./project/lib/
+cp ./product/lib_3520D/*.so ./project/lib/
+export PACK_ID=packid_22
+fi
+
+if [ $1 -eq 23 ]
+then
+echo "Compile XDVR 3.0 firmware with 3531 28XXND..."
+cp Comdef.3531 ./project/Comdef -f
+cp Makefile.3531 ./project/Makefile -f
+cp ./product/lib_3531_09x_N/*.a ./project/lib/
+cp ./product/lib_3531_09x_N/*.so ./project/lib/
+export PACK_ID=packid_23
+fi
+
+if [ $1 -eq 24 ]
+then
+echo "Compile XDVR 3.0 firmware with 3521 28XXNE..."
+cp Comdef.3521 ./project/Comdef -f
+cp Makefile.3521 ./project/Makefile -f
+cp ./product/lib_3521/*.a ./project/lib/
+cp ./product/lib_3521/*.so ./project/lib/
+export PACK_ID=packid_24
+fi
+
+if [ $1 -eq 25 ]
+then
+echo "Compile NVR 3.0 firmware with 3535..."
+cp Comdef.3535 ./project/Comdef -f
+cp Makefile.3535 ./project/Makefile -f
+cp ./product/lib_3535/*.a ./project/lib/
+cp ./product/lib_3535/*.so ./project/lib/
+export PACK_ID=packid_25
+fi
+
+if [ $1 -eq 26 ]
+then
+echo "Compile XDVR 3.3.0 firmware with 3531 0BX SDI..."
+cp Comdef.3531 ./project/Comdef -f
+cp Makefile.3531 ./project/Makefile -f
+cp TSNetDeviceDef.3531 ./project/TSNetDeviceDef -f
+cp ./product/lib_3531_0BX/*.a ./project/lib/
+cp ./product/lib_3531_0BX/*.so ./project/lib/
+export PACK_ID=packid_26
+fi
+
+
+if [ $1 -eq 27 ]
+then
+echo "Compile XDVR 3.3.0 firmware with GM8210 SDI..."
+cp Comdef.GM8210 ./project/Comdef -f
+cp Makefile.GM8210 ./project/Makefile -f
+cp TSNetDeviceDef.3531 ./project/TSNetDeviceDef -f
+cp ./product/lib_GM8210/*.a ./project/lib/
+cp ./product/lib_GM8210/*.so ./project/lib/
+export PACK_ID=packid_27
+fi
+
+if [ $1 -eq 28 ]
+then
+echo "Compile XDVR 3.3.0 firmware with GM8283 SDI..."
+cp Comdef.GM8283 ./project/Comdef -f
+cp Makefile.GM8283 ./project/Makefile -f
+cp TSNetDeviceDef.3531 ./project/TSNetDeviceDef -f
+cp ./product/lib_GM8283/*.a ./project/lib/
+cp ./product/lib_GM8283/*.so ./project/lib/
+export PACK_ID=packid_28
+fi
+
+if [ $1 -eq 29 ]
+then
+echo "Compile XDVR 3.0 firmware with 3520D V040..."
+cp Comdef.3520D ./project/Comdef -f
+cp Makefile.3520D ./project/Makefile -f
+cp TSNetDeviceDef.3520D ./project/TSNetDeviceDef -f
+cp ./product/lib_3520D_040/*.a ./project/lib/
+cp ./product/lib_3520D_040/*.so ./project/lib/
+export PACK_ID=packid_22
+fi
+
+sed -i "s/make -C/make -j5 -C/" ./project/Makefile
+
+
+if [ $3 -eq 1 ]
+then
+export CUSTOM_IDD=td_tvt_in
+fi
+if [ $3 -eq 2 ]
+then
+export CUSTOM_IDD=td_tvt_cn
+fi
+if [ $3 -eq 3 ]
+then
+export CUSTOM_IDD=td_tvt_sp
+fi
+if [ $3 -eq 4 ]
+then
+export CUSTOM_IDD=td_tvt_us02
+fi
+if [ $3 -eq 5 ]
+then
+export CUSTOM_IDD=td_tvt_ru04
+fi
+if [ $3 -eq 6 ]
+then
+export CUSTOM_IDD=td_tvt_br27
+fi
+if [ $3 -eq 7 ]
+then
+export CUSTOM_IDD=td_tvt_tw01
+fi
+if [ $3 -eq 8 ]
+then
+export CUSTOM_IDD=td_tvt_gb14
+fi
+if [ $3 -eq 9 ]
+then
+export CUSTOM_IDD=td_tvt_in23
+fi
+if [ $3 -eq 10 ]
+then
+export CUSTOM_IDD=td_tvt_us47
+fi
+if [ $3 -eq 11 ]
+then
+export CUSTOM_IDD=td_tvt_in25
+fi
+if [ $3 -eq 12 ]
+then
+export CUSTOM_IDD=td_tvt_pl14
+fi
+if [ $3 -eq 13 ]
+then
+export CUSTOM_IDD=td_tvt_tw01ts
+fi
+if [ $3 -eq 14 ]
+then
+export CUSTOM_IDD=td_tvt_il03
+fi
+if [ $3 -eq 15 ]
+then
+export CUSTOM_IDD=td_tvt_lv01
+fi
+if [ $3 -eq 16 ]
+then
+export CUSTOM_IDD=td_tvt_shanghai
+fi
+if [ $3 -eq 17 ]
+then
+export CUSTOM_IDD=td_tvt_cbc
+fi
+
+if [ $3 -eq 18 ]
+then
+export CUSTOM_IDD=td_tvt_gb31
+fi
+
+if [ $3 -eq 20 ]
+then
+export CUSTOM_IDD=td_tvt_hxht
+fi
+
+if [ $3 -eq 21 ]
+then
+export CUSTOM_IDD=td_tvt_yuanzheng
+fi
+
+if [ $3 -eq 22 ]
+then
+export CUSTOM_IDD=td_tvt_us02_jp
+fi
+
+if [ $3 -eq 23 ]
+then
+export CUSTOM_IDD=td_tvt_in_ui5
+fi
+
+if [ $3 -eq 24 ]
+then
+export CUSTOM_IDD=td_tvt_sst
+fi
+
+if [ $3 -eq 25 ]
+then
+export CUSTOM_IDD=td_tvt_rili
+fi
+
+if [ $3 -eq 26 ]
+then
+export CUSTOM_IDD=td_tvt_gb
+fi
+
+if [ $3 -eq 27 ]
+then
+export CUSTOM_IDD=td_tvt_znv
+fi
+
+if [ $3 -eq 28 ]
+then
+export CUSTOM_IDD=td_tvt_znvcn
+fi
+
+if [ $3 -eq 29 ]
+then
+export CUSTOM_IDD=td_tvt_znvcnsc
+fi
+
+if [ $3 -eq 30 ]
+then
+export CUSTOM_IDD=td_tvt_znvinwnrl
+fi
+
+if [ $3 -eq 31 ]
+then
+export CUSTOM_IDD=td_tvt_cnb
+fi
+
+if [ $3 -eq 32 ]
+then
+export CUSTOM_IDD=td_tvt_korean
+fi
+
+if [ $3 -eq 33 ]
+then
+export CUSTOM_IDD=td_tvt_korean_cn
+fi
+
+if [ $3 -eq 34 ]
+then
+export CUSTOM_IDD=td_tvt_kr24_in
+fi
+
+if [ $3 -eq 35 ]
+then
+export CUSTOM_IDD=td_tvt_ap_au27
+fi
+
+if [ $4 -eq 0 ]
+then
+export HAVE_3G=no_use_3g
+fi
+
+if [ $4 -eq 1 ]
+then
+export HAVE_3G=use_3g
+fi
+
+if [ $5 -eq 0 ]
+then
+export OSD_TWOLINES=no_osdtwolines
+fi
+
+if [ $5 -eq 1 ]
+then
+export OSD_TWOLINES=have_osdtwolines
+fi
+
+if [ $6 -eq 0 ]
+then
+echo "no onvif"
+export SUPPROT_ONVIF=no_onvif
+fi
+
+if [ $6 -eq 1 ]
+then
+echo "support onvif"
+export SUPPROT_ONVIF=support_onvif
+fi
+
+if [ $7 -eq 0 ]
+then
+echo "no nat"
+export SUPPROT_NAT=no_nat
+fi
+
+if [ $7 -eq 1 ]
+then
+echo "support nat"
+export SUPPROT_NAT=support_nat
+fi
+
+if [ $8 -eq 0 ]
+then
+echo "no push"
+export SUPPROT_PUSH=no_push
+fi
+
+if [ $8 -eq 1 ]
+then
+echo "support push"
+export SUPPROT_PUSH=support_push
+fi
+
+if [ $9 -eq 0 ]
+then
+echo "no api"
+export SUPPROT_API=no_api
+fi
+
+if [ $9 -eq 1 ]
+then
+echo "support api"
+export SUPPROT_API=support_api
+fi
+
+tput clear
+tput cup 5 15
+echo "同为数码软件打包工具"
+tput cup 12 10
+echo "嵌入式硬盘录像机固件《XDVR 3.0》编译及打包程序"
+
+while true
+do
+	error_flag=0
+	need_debug=0
+	
+	tput clear
+	tput cup 5 10
+	echo "编译模式 - 调试、测试、发布三种不同方式"	
+	tput cup 7 20; echo "0: Cancel-----------------------退出"
+	tput cup 9 20; echo "1: Debug------------------------调试版本"
+	tput cup 11 20; echo "2: Test & cost down------------测试版本--------精简版"
+	tput cup 13 20; echo "3: Test & Basic----------------测试版本--------基础版"
+	tput cup 15 20; echo "4: Test & Professional---------测试版本--------专业版"
+	tput cup 17 20; echo "5: Test & Ultimate-------------测试版本--------旗舰版"
+	tput cup 19 20; echo "6: Release & cost down---------发布版本--------精简版"
+	tput cup 21 20; echo "7: Release & Basic-------------发布版本--------基础版"
+	tput cup 23 20; echo "8: Release & Professional------发布版本--------专业版"
+	tput cup 25 20; echo "9: Release & Ultimate----------发布版本--------旗舰版"
+	tput cup 27 20; echo "10: Clean----------------------清理所有"
+	tput cup 29 10; echo -e "请选择编译模式 >_\b\c"
+	read compile_mode
+
+	#
+	#case construct for checking the user selection
+	#
+	case $compile_mode in
+		0)tput clear;exit 0;;
+		1)error_flag=1;;
+		2)error_flag=1;;
+		3)error_flag=1;;
+		4)error_flag=1;;
+		5)error_flag=1;;
+		6)error_flag=1;;
+		7)error_flag=1;;
+		8)error_flag=1;;
+		9)error_flag=1;;
+		10)error_flag=1;;
+		*)./error 60 10  62
+		tput cup 60 1 
+		tput ed
+	esac
+
+	if [ $error_flag -eq 1 ]
+	then
+		error_flag=0
+	
+		tput cup 31 10; echo "你选择了编译模式 - $compile_mode"
+		tput cup 33 10; echo "界面方案 - 工具条或者菜单形式 - 采用按钮形式或者锚形式"
+		tput cup 35 20; echo "0: 退出"
+		tput cup 37 20; echo "1: 工具条及按钮------TD_TVT_IN,TD_TVT_CN,TD_TVT_SP,TD_TVT_US02,TD_TVT_US47,TD_TVT_IL03,TD_TVT_RU04"
+		tput cup 39 20; echo "2: 菜单及按钮--------TD_TVT_TW01, TD_TVT_IN25(ADI) TD_TVT_IN23 TD_TVT_CBC TD_TVT_IN_UI5(ADI)"
+		tput cup 41 20; echo "3: 工具条及锚--------TD_TVT_BR27,TD_TVT_PL14,lv01"
+		tput cup 43 20; echo "4: 菜单及锚----------TD_TVT_US47"
+		tput cup 45 10; echo -e "请选择界面方案 >_\b\c"
+		read ui_mode
+	
+		case $ui_mode in
+			0)tput clear;exit 0;;
+			1)export UI_MODE=ui_toolbar_button;error_flag=1;;
+			2)export UI_MODE=ui_menu_button;error_flag=1;;
+			3)export UI_MODE=ui_toolbar_anchor;error_flag=1;;
+			4)export UI_MODE=ui_menu_anchor;error_flag=1;;
+			*)./error 60 10 62
+			tput cup 60 1 
+			tput ed
+		esac
+		
+		if [ $error_flag -eq 1 ]
+		then
+			error_flag=0	
+			tput cup 46 10; echo "你选择了界面方案 - $ui_mode"
+			tput cup 47 10; echo "客户端的界面选择："
+			tput cup 48 20; echo "0: 退出"
+			tput cup 49 20; echo "1: 浅蓝"
+			tput cup 50 20; echo "2: 深蓝"
+			tput cup 51 20; echo "3: 红色"
+			tput cup 52 10; echo -e "请选择客户端的界面方案 >_\b\c"
+			read ie_mode
+			
+			case $ie_mode in
+				0)tput clear;exit 0;;
+				1)error_flag=1;;
+				2)error_flag=1;;
+				3)error_flag=1;;
+			esac		
+			
+			if [ $error_flag -eq 1 ]
+			then
+				echo "compile mode" $compile_mode "CUSTOMID=" $CUSTOM_IDD
+				case $compile_mode in
+				0)tput clear;exit 0;;
+				1)need_debug=1 && cd ./project/               && make VERSION=debug   LEVEL=Ultimate     UI=${UI_MODE}	PACKID=${PACK_ID} CUSTOMID=${CUSTOM_IDD} HAVE3G=${HAVE_3G} OSDTWOLINES=${OSD_TWOLINES} SUPPROTAPI=${SUPPROT_API} ;exit 0;;
+				2)need_debug=1 && cd ./project/ && make clean && make VERSION=test    LEVEL=CostDown     UI=${UI_MODE}	PACKID=${PACK_ID} CUSTOMID=${CUSTOM_IDD} HAVE3G=${HAVE_3G} OSDTWOLINES=${OSD_TWOLINES} SUPPROTAPI=${SUPPROT_API} && cd .. && ./pack $1 $2 ${ui_mode} $3 ${compile_mode} ${ie_mode} $4 $5 $6 ${7} ${8} ${9} ${need_debug}; exit 0;;
+				3)need_debug=1 && cd ./project/ && make clean && make VERSION=test    LEVEL=Basic        UI=${UI_MODE}	PACKID=${PACK_ID} CUSTOMID=${CUSTOM_IDD} HAVE3G=${HAVE_3G} OSDTWOLINES=${OSD_TWOLINES} SUPPROTAPI=${SUPPROT_API} && cd .. && ./pack $1 $2 ${ui_mode} $3 ${compile_mode} ${ie_mode} $4 $5 $6 ${7} ${8} ${9} ${need_debug}; exit 0;;
+				4)need_debug=1 && cd ./project/ && make clean && make VERSION=test    LEVEL=Professional UI=${UI_MODE}	PACKID=${PACK_ID} CUSTOMID=${CUSTOM_IDD} HAVE3G=${HAVE_3G} OSDTWOLINES=${OSD_TWOLINES} SUPPROTAPI=${SUPPROT_API} && cd .. && ./pack $1 $2 ${ui_mode} $3 ${compile_mode} ${ie_mode} $4 $5 $6 ${7} ${8} ${9} ${need_debug}; exit 0;;
+				5)need_debug=1 && cd ./project/ && make clean && make VERSION=test    LEVEL=Ultimate     UI=${UI_MODE}	PACKID=${PACK_ID} CUSTOMID=${CUSTOM_IDD} HAVE3G=${HAVE_3G} OSDTWOLINES=${OSD_TWOLINES} SUPPROTAPI=${SUPPROT_API} && cd .. && ./pack $1 $2 ${ui_mode} $3 ${compile_mode} ${ie_mode} $4 $5 $6 ${7} ${8} ${9} ${need_debug}; exit 0;;
+				6)cd ./project/ && make clean && make VERSION=release LEVEL=CostDown     UI=${UI_MODE}	PACKID=${PACK_ID} CUSTOMID=${CUSTOM_IDD} HAVE3G=${HAVE_3G} OSDTWOLINES=${OSD_TWOLINES} SUPPROTAPI=${SUPPROT_API} && cd .. && ./pack $1 $2 ${ui_mode} $3 ${compile_mode} ${ie_mode} $4 $5 $6 ${7} ${8} ${9} ${compile_mode}; exit 0;;
+				7)cd ./project/ && make clean && make VERSION=release LEVEL=Basic        UI=${UI_MODE}	PACKID=${PACK_ID} CUSTOMID=${CUSTOM_IDD} HAVE3G=${HAVE_3G} OSDTWOLINES=${OSD_TWOLINES} SUPPROTAPI=${SUPPROT_API} && cd .. && ./pack $1 $2 ${ui_mode} $3 ${compile_mode} ${ie_mode} $4 $5 $6 ${7} ${8} ${9} ${compile_mode}; exit 0;;
+				8)cd ./project/ && make clean && make VERSION=release LEVEL=Professional UI=${UI_MODE}	PACKID=${PACK_ID} CUSTOMID=${CUSTOM_IDD} HAVE3G=${HAVE_3G} OSDTWOLINES=${OSD_TWOLINES} SUPPROTAPI=${SUPPROT_API} && cd .. && ./pack $1 $2 ${ui_mode} $3 ${compile_mode} ${ie_mode} $4 $5 $6 ${7} ${8} ${9} ${compile_mode}; exit 0;;
+				9)cd ./project/ && make clean && make VERSION=release LEVEL=Ultimate     UI=${UI_MODE}	PACKID=${PACK_ID} CUSTOMID=${CUSTOM_IDD} HAVE3G=${HAVE_3G} OSDTWOLINES=${OSD_TWOLINES} SUPPROTAPI=${SUPPROT_API} && cd .. && ./pack $1 $2 ${ui_mode} $3 ${compile_mode} ${ie_mode} $4 $5 $6 ${7} ${8} ${9} ${compile_mode}; exit 0;;
+				#9)./pack $1 $2 ${ui_mode} $3 ${compile_mode} ${ie_mode} $4 $5 $6 ${7} ${8};exit 0;;
+				10)cd ./project/ && make clean && cd ../ && rm ./*.tar;;
+				*)./error 60 10 62
+				tput cup 60 1 
+				tput ed
+				esac
+			fi		
+		fi	
+		
+	fi
+done
+
+exit 0
